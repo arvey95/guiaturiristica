@@ -1,5 +1,6 @@
 package com.example.guiaboyaca.BasedeDatos;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,10 +9,22 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION=1;
-    private static final String DATABASE_NOMBRE = "dbguiaturistica.db";
-    public static final String TABLE_USERS = "tusuarios";
+    private static final int DATABASE_VERSION=3; // Cambia/aumenta la versión cuando añadimos una tabla o una columna a nuestra base de datos
+    private static final String DATABASE_NOMBRE = "guiaturistica.db";
+    public static final String TABLE_USERS = "usuarios";
+    public static final String TABLE_PRODUCTOS = "productos";
+    // Las tablas deben tener nombres en plural
+    // Los atributos/columna dben tener nombres en singular
 
+    // Context = donde estamos ubicados (AQUÍ)
+    // Constructor DbHelper
+    // onCreate
+    // onStart
+    // onResume
+
+    // Corre la app
+
+    //Constructor
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
     }
@@ -19,11 +32,16 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(" CREATE TABLE " + TABLE_USERS + "("+
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nombreusuario TEXT NOT NULL,"+
-                "apellidousuario TEXT NOT NULL,"+
-                "correousuario TEXT NOT NULL,"+
-                "contrasenausuario TEXT NOT NULL)");
+                "idusuario INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nomusuario TEXT NOT NULL,"+
+                "contrasena TEXT NOT NULL,"+
+                "correo TEXT NOT NULL)");
+
+        sqLiteDatabase.execSQL(" CREATE TABLE " + TABLE_PRODUCTOS + "("+
+                "codigop INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nombrep TEXT NOT NULL,"+
+                "precio DECIMAL NOT NULL,"+
+                "descripcion TEXT NOT NULL)");
     }
 
     @Override

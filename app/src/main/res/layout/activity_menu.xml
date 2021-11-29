@@ -118,7 +118,7 @@
 
 
 
-                    android:onClick="opnobsa"
+                    android:onClick="onclickRaquira"
                     android:src="@drawable/raquira"
                     app:layout_constraintEnd_toStartOf="@+id/textView2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +149,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
 
-                    android:onClick="opnobsa"
+                    android:onClick="onclickvilladeleyva"
                     android:src="@drawable/villadeleyva"
                     app:layout_constraintEnd_toStartOf="@+id/textView2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +175,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

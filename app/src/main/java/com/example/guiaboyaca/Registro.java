@@ -1,5 +1,6 @@
 package com.example.guiaboyaca;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,69 +11,70 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.guiaboyaca.BasedeDatos.Dbusuarios;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.guiaboyaca.BasedeDatos.DbUsuarios;
+
 
 public class Registro extends AppCompatActivity {
+    EditText username1, password1, repassword, correo;
+    Button btnRegistro, volverSining; // Variable Global
+    DbUsuarios DB;
 
-EditText ingresanmbre,ingresapellido,ingrescorreo,ingrescontrasena;
-Button btnRegistrarUser;
-Dbusuarios DB;
-
-
-
+    // Ciclo de vida de android = se ejecuta al iniciar nuestra activity onCreate, onStart, onResume.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        ingresanmbre=findViewById(R.id.ingresanombre);
-        ingresapellido=findViewById(R.id.ingresaapellido);
-        ingrescorreo=findViewById(R.id.ingresacorreo);
-        ingrescontrasena=findViewById(R.id.ingresacontrasena);
-        btnRegistrarUser=findViewById(R.id.btnRegistrarUser);
 
-        btnRegistrarUser.setOnClickListener(new View.OnClickListener() {
+        username1 = findViewById(R.id.username1);
+        password1 = findViewById(R.id.password1);
+        repassword = findViewById(R.id.repassword);
+        correo = findViewById(R.id.correo);
+        btnRegistro = findViewById(R.id.btnRegistro);
+        volverSining = findViewById(R.id.volverSining);
+        DB = new DbUsuarios(this);
+
+        btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nombre=ingresanmbre.getText().toString();
-                String apellido=ingresapellido.getText().toString();
-                String correo=ingrescorreo.getText().toString();
-                String contrasena=ingrescontrasena.getText().toString();
+                String user = username1.getText().toString(); //
+                String pass = password1.getText().toString();
+                String repass = repassword.getText().toString();
+                String email = correo.getText().toString();
 
-                if(TextUtils.isEmpty(nombre) && TextUtils.isEmpty(apellido) && TextUtils.isEmpty(correo) && TextUtils.isEmpty(contrasena)){
-                    Toast.makeText(Registro.this,"Se requiere llenar los campos", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(repass) || TextUtils.isEmpty(email))
+                    Toast.makeText(Registro.this, "Se requiere llenar los campos", Toast.LENGTH_SHORT).show();
+                else{
+                    if (pass.equals(repass)) {
+                        Boolean checkuser = DB.checknomusuario(user);
+                        if (checkuser == false) {
+                            Boolean insert = DB.insertarUsuario(user, pass);
+                            if (insert == true) {
+                                Toast.makeText(Registro.this, "Registrado correctamente", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), Menu.class);
+                                startActivity(intent);
 
-                }
-                else {
-                    Boolean checknomusuario=DB.checknomusuario(correo);
-                    if(checknomusuario ==false ){
-                        Boolean insert =DB.insertarUsuario(nombre,apellido,correo,contrasena);
-
-                        if (insert=true){
-                            Toast.makeText(Registro.this,"Registro Exitoso", Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(getApplicationContext(),Menu.class);
-                            startActivity(intent);
+                            } else {
+                                Toast.makeText(Registro.this, "Registro fallido", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(Registro.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
                         }
-                        else {Toast.makeText(Registro.this,"Registro Fallido", Toast.LENGTH_SHORT).show();
-                        }
+                    } else {
+                        Toast.makeText(Registro.this, "La contraseña no coincide", Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(Registro.this,"Este correo ya fue registrado ", Toast.LENGTH_SHORT).show();
-                    }
-
-
                 }
+            }
 
+        });
+
+        volverSining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new  Intent(getApplicationContext(),Menu.class);
+                startActivity(intent);
 
             }
         });
 
-
-
-
     }
-
-
-
-
 }
