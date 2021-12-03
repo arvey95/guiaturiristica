@@ -123,16 +123,6 @@
             android:layout_width="match_parent"
             android:layout_height="200dp" />
 
-        <ImageView
-
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-
-
-            android:src="@drawable/mapa"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </LinearLayout>

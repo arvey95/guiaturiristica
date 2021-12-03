@@ -19,7 +19,7 @@ public class Menu extends AppCompatActivity {
 
 
     public void onclicknobsa (View v){
-        Intent cambiar =new Intent( this,Nobsa.class);
+        Intent cambiar =new Intent( this,HomeActivity.class);
         startActivity(cambiar);
     }
     public void onclickuser (View v){

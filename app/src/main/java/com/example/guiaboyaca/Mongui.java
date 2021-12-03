@@ -13,6 +13,13 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.gms.maps.model.LatLng;
+
 
 public class Mongui extends Activity {
     private ImageSwitcher imageSwitcher;
@@ -41,6 +48,8 @@ public class Mongui extends Activity {
                 return new ImageView(Mongui.this);
 
             }});
+
+
 
 
     }
@@ -99,5 +108,6 @@ public class Mongui extends Activity {
         }
 
     }
+
 
 }
