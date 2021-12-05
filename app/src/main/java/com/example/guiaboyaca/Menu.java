@@ -19,7 +19,7 @@ public class Menu extends AppCompatActivity {
 
 
     public void onclicknobsa (View v){
-        Intent cambiar =new Intent( this,HomeActivity.class);
+        Intent cambiar =new Intent( this,Nobsa.class);
         startActivity(cambiar);
     }
     public void onclickuser (View v){
@@ -44,6 +44,11 @@ public class Menu extends AppCompatActivity {
     }
     public void onclickvilladeleyva(View view) {
         Intent cambiar =new Intent( this,Villadeleyva.class);
+        startActivity(cambiar);
+
+    }
+    public void onclichome(View view) {
+        Intent cambiar =new Intent( this,HomeActivity.class);
         startActivity(cambiar);
 
     }

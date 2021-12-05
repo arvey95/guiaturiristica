@@ -193,6 +193,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:onClick="onclichome"
                 app:srcCompat="@drawable/home_24" />
 
             <ImageView
@@ -200,6 +201,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:onClick="onclichome"
                 app:srcCompat="@drawable/find_24" />
 
             <ImageView

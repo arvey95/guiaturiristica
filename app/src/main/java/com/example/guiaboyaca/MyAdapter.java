@@ -77,8 +77,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             this.title = itemView.findViewById(R.id.tituloProducto);
             this.desc  = itemView.findViewById(R.id.descProducto);
             this.layout = itemView.findViewById(R.id.productLayout);
-
-
         }
     }
 
